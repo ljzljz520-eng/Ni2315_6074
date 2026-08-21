@@ -12,19 +12,19 @@ They are preserved intentionally; only failing build gates are omitted from the 
 - Exit status: `1`
 
 ```text
-ok  	independentweeklylog	0.037s
+ok  	independentweeklylog	0.027s
 ?   	independentweeklylog/cmd/weeklylog	[no test files]
-ok  	independentweeklylog/internal/api	0.023s
-ok  	independentweeklylog/internal/archive	0.031s
-ok  	independentweeklylog/internal/domain	0.012s
-ok  	independentweeklylog/internal/query	0.027s
-ok  	independentweeklylog/internal/repository	0.030s
-ok  	independentweeklylog/internal/review	0.027s
-ok  	independentweeklylog/internal/store	0.030s
---- FAIL: TestWorkflow20BusinessInvariant (0.02s)
+ok  	independentweeklylog/internal/api	0.008s
+ok  	independentweeklylog/internal/archive	0.011s
+ok  	independentweeklylog/internal/domain	0.001s
+ok  	independentweeklylog/internal/query	0.010s
+ok  	independentweeklylog/internal/repository	0.012s
+ok  	independentweeklylog/internal/review	0.009s
+ok  	independentweeklylog/internal/store	0.011s
+--- FAIL: TestWorkflow20BusinessInvariant (0.01s)
     workflow_test.go:37: child resource payload was not preserved: ""
 FAIL
-FAIL	independentweeklylog/internal/workflow20	0.031s
+FAIL	independentweeklylog/internal/workflow20	0.010s
 FAIL
 ```
 

@@ -1,6 +1,8 @@
 module independentweeklylog
 
-go 1.26.6
+go 1.26.3
+
+toolchain go1.26.6
 
 require go.etcd.io/bbolt v1.4.0
 
