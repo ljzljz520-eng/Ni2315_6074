@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2312,
+    "production_files": 35,
+    "production_packages": 9,
+    "test_files": 9,
+    "production_functions": 177,
+    "decision_points": 326
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": [
+      "JournalEntry",
+      "ReviewRecord",
+      "Resource",
+      "ArchiveRecord",
+      "DeveloperProfile"
+    ],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": [
+        "create and validate a weekly journal draft",
+        "normalize progress lists and attach parent-child resources",
+        "persist the draft and creation event",
+        "return the saved journal for editing"
+      ],
+      "test": "TestWorkflowCaptureReviewQueryArchive"
+    },
+    {
+      "steps": [
+        "submit a validated draft for review",
+        "record an approval or rejection decision",
+        "publish the approved journal for discovery",
+        "retain reviewer feedback history"
+      ],
+      "test": "TestWorkflowCaptureReviewQueryArchive"
+    },
+    {
+      "steps": [
+        "filter journal progress by week and status",
+        "aggregate approved pending and archived counts",
+        "sort authors and entries deterministically",
+        "return a stable weekly summary"
+      ],
+      "test": "TestWorkflowCaptureReviewQueryArchive"
+    },
+    {
+      "steps": [
+        "verify approved journal and required resources",
+        "create a canonical archive snapshot",
+        "calculate and store an integrity checksum",
+        "mark the journal archived for later retrieval"
+      ],
+      "test": "TestWorkflowCaptureReviewQueryArchive"
+    },
+    {
+      "steps": [
+        "open parent and child development resources",
+        "complete independent game development week 20 step seven",
+        "close resources in dependency order",
+        "persist the complete resource payload"
+      ],
+      "test": "TestWorkflow20BusinessInvariant"
+    }
+  ]
+}
