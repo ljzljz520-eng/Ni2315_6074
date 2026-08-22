@@ -24,8 +24,13 @@ func (s *ResourceSession) Commit() (result WorkflowResult, err error) {
 			err = flushErr
 		}
 	}()
-	defer s.parent.Close()
+	// Defers run LIFO, so the parent must be registered after the child to
+	// close first. Closing the parent before the child is the required
+	// dependency order: ResourceCloser.Close clears a child's payload when its
+	// parent is still open, so closing the child first would discard the
+	// payload before flush persists it.
 	defer s.child.Close()
+	defer s.parent.Close()
 	if s.entry.Status != domain.StatusSubmitted && s.entry.Status != domain.StatusDraft {
 		return result, fmt.Errorf("%w: resource step requires draft or submitted entry", domain.ErrConflict)
 	}
